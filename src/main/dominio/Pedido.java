@@ -44,6 +44,18 @@ public class Pedido {
         return id;
     }
 
+    public List<ItemLanche> getItens() {
+        return itens;
+    }
+
+    public boolean getDelivery(){
+        return delivery;
+    }
+
+    public String getEnderecoEntrega() {
+        return enderecoEntrega;
+    }
+
     @Override
     public String toString() {
         return String.format("Pedido #%s | %s | %d item(ns) | %s | delivery=%b", id, nomeCliente, itens.size(), totalComTaxa(), delivery);
