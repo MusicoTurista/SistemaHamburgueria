@@ -14,7 +14,7 @@ public class ServicoDelivery {
 
     public Dinheiro calcular(double distKm, Dinheiro valor) {
         Dinheiro frete = estrategia.calcular(distKm, valor);
-        System.out.println("  [Frete] " + estrategia.modalidade() + " → " + frete);
+        System.out.println("[Frete] " + estrategia.modalidade() + " → " + frete);
         return frete;
     }
 }
