@@ -1,6 +1,6 @@
 package main.dominio;
 
-class Dinheiro {
+public class Dinheiro {
     private int centavos;
 
     public Dinheiro(double reais) {

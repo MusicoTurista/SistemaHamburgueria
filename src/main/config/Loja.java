@@ -1,6 +1,6 @@
 package main.config;
 
-class Loja {
+public class Loja {
     private static Loja instance;
     public final String nome = "Hamburgueria";
     public final double taxaServico = 0.10;

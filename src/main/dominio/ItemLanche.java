@@ -1,7 +1,9 @@
 package main.dominio;
 
-interface ItemLanche extends Cloneable {
-    String   descricao();
+public interface ItemLanche extends Cloneable {
+    String descricao();
+
     Dinheiro preco();
+
     ItemLanche clonar();
 }
