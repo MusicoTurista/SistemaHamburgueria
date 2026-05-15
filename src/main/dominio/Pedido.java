@@ -36,6 +36,14 @@ public class Pedido {
         return subtotal().multiplicar(1 + Loja.getInstance().taxaServico);
     }
 
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public String getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return String.format("Pedido #%s | %s | %d item(ns) | %s | delivery=%b", id, nomeCliente, itens.size(), totalComTaxa(), delivery);
