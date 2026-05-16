@@ -56,6 +56,10 @@ public class Pedido {
         return enderecoEntrega;
     }
 
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
     @Override
     public String toString() {
         return String.format("Pedido #%s | %s | %d item(ns) | %s | delivery=%b", id, nomeCliente, itens.size(), totalComTaxa(), delivery);
