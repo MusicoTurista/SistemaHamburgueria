@@ -87,7 +87,7 @@ public class AtendimentoFacade {
         new PedidoConfirmado(canalCliente).notificar(pedido);
 
         sessao.registrar(pedido);
-        System.out.println("  Sessão atual: " + sessao);
+        System.out.println("Sessão atual: " + sessao);
         return true;
     }
 
