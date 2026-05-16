@@ -50,10 +50,10 @@ public class AtendimentoFacade {
 
         System.out.println("-- Validação --");
         if (!cadeia.validar(pedido)) {
-            System.out.println("  Pedido REJEITADO.");
+            System.out.println("Pedido REJEITADO.");
             return false;
         }
-        System.out.println("  OK");
+        System.out.println("OK");
 
         ExpressaoDesconto promo = InterpretadorPromocao.interpretar(codigoPromo);
         Dinheiro valorDesconto = promo.aplicar(pedido.subtotal(), pedido);
@@ -63,11 +63,11 @@ public class AtendimentoFacade {
         ServicoDelivery delivery = new ServicoDelivery(pedido, distKm);
         Dinheiro frete = delivery.calcular(distKm, valorDesconto);
         Dinheiro totalFinal = valorDesconto.somar(frete).multiplicar(1 + Loja.getInstance().taxaServico);
-        System.out.println("  Total com taxa: " + totalFinal);
+        System.out.println("Total com taxa: " + totalFinal);
 
         System.out.println("-- Pagamento --");
         if (!terminal.processar(pedido.getFormaPagamento(), totalFinal)) {
-            System.out.println("  Pagamento RECUSADO.");
+            System.out.println("Pagamento RECUSADO.");
             return false;
         }
 
