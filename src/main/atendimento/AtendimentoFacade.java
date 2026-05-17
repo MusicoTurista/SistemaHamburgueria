@@ -1,13 +1,10 @@
 package main.atendimento;
 
-import main.*;
-import main.caixa.*;
 import main.config.Loja;
+import main.caixa.*;
 import main.cozinha.*;
 import main.dominio.*;
-import main.estado.ContextoPedido;
-import main.estado.NotificadorCliente;
-import main.estado.PainelCozinha;
+import main.estado.*;
 import main.frete.*;
 import main.notificacao.*;
 import main.pagamento.*;
