@@ -1,7 +1,7 @@
 package main.config;
 
 public class Loja {
-    private static Loja instance;
+    private static Loja instance = new Loja();
     public final String nome = "Hamburgueria";
     public final double taxaServico = 0.10;
     public final int limiteCardapio = 50;
@@ -10,7 +10,6 @@ public class Loja {
     }
 
     public static Loja getInstance() {
-        if (instance == null) instance = new Loja();
         return instance;
     }
 
