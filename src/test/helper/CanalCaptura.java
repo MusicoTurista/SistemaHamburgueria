@@ -6,8 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CanalCaptura implements CanalNotificacao {
-    final List<String> mensagens = new ArrayList<>();
-    String ultimoDestinatario = "";
+    private final List<String> mensagens = new ArrayList<>();
+    private String ultimoDestinatario = "";
+
+    public List<String> getMensagens() {
+        return mensagens;
+    }
+
+    public String getUltimoDestinatario() {
+        return ultimoDestinatario;
+    }
 
     @Override
     public void enviar(String dest, String msg) {
@@ -16,6 +24,6 @@ public class CanalCaptura implements CanalNotificacao {
     }
 
     public String ultima() {
-        return mensagens.isEmpty() ? "" : mensagens.get(mensagens.size() - 1);
+        return mensagens.isEmpty() ? "" : mensagens.getLast();
     }
 }

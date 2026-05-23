@@ -17,23 +17,11 @@ public class SessaoCaixa {
         ids.add(p.getId());
     }
 
-    static class Snapshot {
-        final Dinheiro total;
-        final int numPed;
-        final List<String> ids;
-
-        Snapshot(Dinheiro t, int n, List<String> i) {
-            total = t;
-            numPed = n;
-            ids = new ArrayList<>(i);
-        }
+    public SessaoCaixaSnapshot salvar() {
+        return new SessaoCaixaSnapshot(total, numPed, ids);
     }
 
-    public Snapshot salvar() {
-        return new Snapshot(total, numPed, ids);
-    }
-
-    public void restaurar(Snapshot s) {
+    public void restaurar(SessaoCaixaSnapshot s) {
         total = s.total;
         numPed = s.numPed;
         ids = new ArrayList<>(s.ids);
