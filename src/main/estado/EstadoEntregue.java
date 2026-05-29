@@ -18,6 +18,6 @@ public class EstadoEntregue implements EstadoPedido {
     }
 
     public String nome() {
-        return "Entregue";
+        return "ENTREGUE";
     }
 }

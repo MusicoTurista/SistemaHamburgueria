@@ -21,7 +21,7 @@ public class ContextoPedido {
 
     void transicionar(EstadoPedido novo) {
         this.estado = novo;
-        System.out.println("  [State] #" + pedido.getId() + " → " + novo.nome());
+        System.out.println("[State] #" + pedido.getId() + " → " + novo.nome());
         obs.forEach(o -> o.aoMudarEstado(pedido, novo.nome()));
     }
 
