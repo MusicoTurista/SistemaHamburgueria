@@ -4,6 +4,7 @@ import main.atendimento.AtendimentoFacade;
 import main.caixa.SessaoCaixaSnapshot;
 import main.cardapio.ItemAvulso;
 import main.cardapio.LancheBase;
+import main.cardapio.flyweight.IngredientePool;
 import main.dominio.Pedido;
 import main.dominio.PedidoBuilder;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,8 @@ public class AtendimentoFacadeTest {
     void setup() {
         canal = new CanalCaptura();
         facade = new AtendimentoFacade(canal);
+        IngredientePool.repor("Acém",1000);
+        IngredientePool.repor("Wagyu",1000);
     }
 
     private Pedido pedidoSimples() {
@@ -34,7 +37,7 @@ public class AtendimentoFacadeTest {
 
     @Test
     void deveAceitarPedidoDeliveryValido() {
-        Pedido p = new PedidoBuilder().cliente("Carlos").item(new LancheBase("Wagyu Smash", 58.0)).delivery("Rua das Flores, 42").pagamento("pix").build();
+        Pedido p = new PedidoBuilder().cliente("Carlos").item(new LancheBase("Wagyu", 58.0)).delivery("Rua das Flores, 42").pagamento("pix").build();
         assertTrue(facade.processarPedido(p, "DELIVERY_DESCONTO_10PCT", 3.0));
     }
 
