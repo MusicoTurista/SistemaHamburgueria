@@ -1,5 +1,7 @@
 package main.cozinha;
 
+import main.cardapio.factory.factoryMethod.LinhaGourmet;
+import main.cardapio.factory.factoryMethod.LinhaLanche;
 import main.dominio.Pedido;
 
 public class SetorCozinha implements Setor {
@@ -18,9 +20,14 @@ public class SetorCozinha implements Setor {
     public void receberMensagem(String r, String ev, Object d) {
         if ("PEDIDO_PAGO".equals(ev) && d instanceof Pedido p) {
             System.out.println("    [Cozinha] Recebeu pedido #" + p.getId());
-            boolean gourmet = p.getItens().stream().anyMatch(i -> i.preco().reais() > 30);
-            ProcessoMontagem m = gourmet ? new MontadorGourmet() : new MontadorClassico();
-            fila.executar(new ComandoMontar(m, p));
+            String nomePrincipal = p.getItens().stream().map(i -> i.descricao().split(" \\+")[0].trim()).filter(n -> !n.equals("Refrigerante") && !n.equals("Suco Natural")).findFirst().orElse("X-Simples");
+
+            LinhaLanche linha = RegistroLinhas.detectar(nomePrincipal);
+            ProcessoMontagem montador = linha.criarMontador();
+
+            System.out.println("[Cozinha] Linha: " + (linha instanceof LinhaGourmet ? "Gourmet" : "Clássica"));
+
+            fila.executar(new ComandoMontar(montador, p));
             central.publicar(nome(), "PEDIDO_PRONTO", p);
         }
     }

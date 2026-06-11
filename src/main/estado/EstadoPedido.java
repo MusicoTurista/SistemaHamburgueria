@@ -9,5 +9,7 @@ public interface EstadoPedido {
 
     void entregar(ContextoPedido ctx);
 
+    void cancelar(ContextoPedido ctx);
+
     String nome();
 }

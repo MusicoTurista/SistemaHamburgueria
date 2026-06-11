@@ -15,5 +15,7 @@ public class NotificadorCliente implements ObservadorPedido {
             canal.enviar(pedido.getNomeCliente(), "Pedido #" + pedido.getId() + " pronto para retirada!");
         if ("ENTREGUE".equals(estado))
             canal.enviar(pedido.getNomeCliente(), "Bom apetite! #" + pedido.getId() + " entregue.");
+        if ("CANCELADO".equals(estado))
+            canal.enviar(pedido.getNomeCliente(), "Pedido #" + pedido.getId() + " cancelado.");
     }
 }

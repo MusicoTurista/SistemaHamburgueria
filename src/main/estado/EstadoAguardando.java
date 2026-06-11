@@ -1,8 +1,17 @@
 package main.estado;
 
 public class EstadoAguardando implements EstadoPedido {
+
+    private EstadoAguardando(){}
+
+    private static EstadoAguardando instance = new EstadoAguardando();
+
+    public static EstadoAguardando getInstance() {
+        return instance;
+    }
+
     public void confirmar(ContextoPedido c) {
-        c.transicionar(new EstadoConfirmado());
+        c.transicionar(EstadoConfirmado.getInstance());
     }
 
     public void iniciarPreparo(ContextoPedido c) {
@@ -15,6 +24,10 @@ public class EstadoAguardando implements EstadoPedido {
 
     public void entregar(ContextoPedido c) {
         System.out.println("Aguardando pagamento.");
+    }
+
+    public void cancelar(ContextoPedido c) {
+        c.transicionar(EstadoCancelado.getInstance());
     }
 
     public String nome() {

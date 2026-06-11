@@ -1,6 +1,15 @@
 package main.estado;
 
 public class EstadoEmPreparo implements EstadoPedido {
+
+    private EstadoEmPreparo(){}
+
+    private static EstadoEmPreparo instance = new EstadoEmPreparo();
+
+    public static EstadoEmPreparo getInstance() {
+        return instance;
+    }
+
     public void confirmar(ContextoPedido c) {
         System.out.println("Em preparo.");
     }
@@ -10,11 +19,15 @@ public class EstadoEmPreparo implements EstadoPedido {
     }
 
     public void finalizar(ContextoPedido c) {
-        c.transicionar(new EstadoPronto());
+        c.transicionar(EstadoPronto.getInstance());
     }
 
     public void entregar(ContextoPedido c) {
         System.out.println("Ainda em preparo.");
+    }
+
+    public void cancelar(ContextoPedido c) {
+        System.out.println("Já confirmado.");
     }
 
     public String nome() {

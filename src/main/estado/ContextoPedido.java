@@ -12,7 +12,7 @@ public class ContextoPedido {
 
     public ContextoPedido(Pedido p) {
         this.pedido = p;
-        this.estado = new EstadoAguardando();
+        this.estado = EstadoAguardando.getInstance();
     }
 
     public void inscrever(ObservadorPedido o) {
@@ -40,6 +40,12 @@ public class ContextoPedido {
     public void entregar() {
         estado.entregar(this);
     }
+
+    public void cancelar() {
+        estado.cancelar(this);
+    }
+
+
 
     public String estadoAtual() {
         return estado.nome();

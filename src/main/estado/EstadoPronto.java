@@ -1,6 +1,14 @@
 package main.estado;
 
 public class EstadoPronto implements EstadoPedido {
+
+    private EstadoPronto(){}
+
+    private static EstadoPronto instance = new EstadoPronto();
+
+    public static EstadoPronto getInstance() {
+        return instance;
+    }
     public void confirmar(ContextoPedido c) {
         System.out.println("Já pronto.");
     }
@@ -14,7 +22,11 @@ public class EstadoPronto implements EstadoPedido {
     }
 
     public void entregar(ContextoPedido c) {
-        c.transicionar(new EstadoEntregue());
+        c.transicionar(EstadoEntregue.getInstance());
+    }
+
+    public void cancelar(ContextoPedido c) {
+        System.out.println("Já pronto.");
     }
 
     public String nome() {

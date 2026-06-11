@@ -25,7 +25,8 @@ public class AtendimentoFacade {
         RegraValidacao r2 = new RegraPedidoNaoVazio();
         RegraValidacao r3 = new RegraEnderecoDelivery();
         RegraValidacao r4 = new RegraValorMinimo(15.0);
-        r1.encadear(r2).encadear(r3).encadear(r4);
+        RegraValidacao r5 = new RegraEstoqueDisponivel();
+        r1.encadear(r2).encadear(r3).encadear(r4).encadear(r5);
         this.cadeia = r1;
 
         this.terminal = new ProxyTerminal(new AdapterMaquina());
@@ -45,9 +46,12 @@ public class AtendimentoFacade {
         System.out.println(pedido);
         System.out.println("══════════════════════════════════════");
 
+        ContextoPedido ctx = new ContextoPedido(pedido);
+
         System.out.println("-- Validação --");
         if (!cadeia.validar(pedido)) {
             System.out.println("Pedido REJEITADO.");
+            ctx.cancelar();
             return false;
         }
         System.out.println("OK");
@@ -64,12 +68,12 @@ public class AtendimentoFacade {
 
         System.out.println("-- Pagamento --");
         if (!terminal.processar(pedido.getFormaPagamento(), totalFinal)) {
+            ctx.cancelar();
             System.out.println("Pagamento RECUSADO.");
             return false;
         }
 
         System.out.println("-- Ciclo de Vida --");
-        ContextoPedido ctx = new ContextoPedido(pedido);
         ctx.inscrever(new NotificadorCliente(canalCliente));
         ctx.inscrever(new PainelCozinha());
         ctx.confirmar();
