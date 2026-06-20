@@ -10,25 +10,17 @@ public class EstadoConfirmado implements EstadoPedido {
         return instance;
     }
 
-    public void confirmar(ContextoPedido c) {
-        System.out.println("Já confirmado.");
-    }
+    public void confirmar(ContextoPedido c) {}
 
     public void iniciarPreparo(ContextoPedido c) {
         c.transicionar(EstadoEmPreparo.getInstance());
     }
 
-    public void finalizar(ContextoPedido c) {
-        System.out.println("Ainda na fila.");
-    }
+    public void finalizar(ContextoPedido c) {}
 
-    public void entregar(ContextoPedido c) {
-        System.out.println("Ainda na fila.");
-    }
+    public void entregar(ContextoPedido c) {}
 
-    public void cancelar(ContextoPedido c) {
-        System.out.println("Já confirmado.");
-    }
+    public void cancelar(ContextoPedido c) {}
 
     public String nome() {
         return "CONFIRMADO";

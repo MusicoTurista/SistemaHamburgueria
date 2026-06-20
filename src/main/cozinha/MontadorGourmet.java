@@ -10,11 +10,11 @@ public class MontadorGourmet extends ProcessoMontagem {
         int gramas = 180 * contarLanches(p);
 
         IngredientePool.reservar("Wagyu A5", gramas);
-        System.out.println("→ " + wagyu.usar(gramas) + " | Estoque restante: " + IngredientePool.estoqueAtual("Wagyu A5") + "g");
+        System.out.println(wagyu.usar(gramas) + " | Estoque restante: " + IngredientePool.estoqueAtual("Wagyu A5") + "g");
     }
 
     protected void montarLanche(Pedido p) {
-        System.out.println("→ Brioche, Wagyu, molho trufado");
+        System.out.println("Brioche, Wagyu, molho trufado");
     }
 
     private int contarLanches(Pedido p) {

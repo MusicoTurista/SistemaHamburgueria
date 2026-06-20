@@ -10,25 +10,15 @@ public class EstadoCancelado implements EstadoPedido {
         return instance;
     }
 
-    public void confirmar(ContextoPedido c) {
-        System.out.println("Pedido cancelado.");
-    }
+    public void confirmar(ContextoPedido c) {}
 
-    public void iniciarPreparo(ContextoPedido c) {
-        System.out.println("Pedido cancelado.");
-    }
+    public void iniciarPreparo(ContextoPedido c) {}
 
-    public void finalizar(ContextoPedido c) {
-        System.out.println("Pedido cancelado.");
-    }
+    public void finalizar(ContextoPedido c) {}
 
-    public void entregar(ContextoPedido c) {
-        System.out.println("Pedido cancelado.");
-    }
+    public void entregar(ContextoPedido c) {}
 
-    public void cancelar(ContextoPedido c) {
-        System.out.println("Já cancelado.");
-    }
+    public void cancelar(ContextoPedido c) {}
 
     public String nome() {
         return "CANCELADO";

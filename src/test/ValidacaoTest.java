@@ -16,7 +16,7 @@ public class ValidacaoTest {
         RegraValidacao r1 = new RegraLojaAberta();
         RegraValidacao r2 = new RegraPedidoNaoVazio();
         RegraValidacao r3 = new RegraEnderecoDelivery();
-        RegraValidacao r4 = new RegraValorMinimo(15.0);
+        RegraValidacao r4 = new RegraValorMinimo();
         RegraValidacao r5 = new RegraEstoqueDisponivel();
         r1.encadear(r2).encadear(r3).encadear(r4).encadear(r5);
         return r1;

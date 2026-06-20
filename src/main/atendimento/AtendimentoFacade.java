@@ -24,7 +24,7 @@ public class AtendimentoFacade {
         RegraValidacao r1 = new RegraLojaAberta();
         RegraValidacao r2 = new RegraPedidoNaoVazio();
         RegraValidacao r3 = new RegraEnderecoDelivery();
-        RegraValidacao r4 = new RegraValorMinimo(15.0);
+        RegraValidacao r4 = new RegraValorMinimo();
         RegraValidacao r5 = new RegraEstoqueDisponivel();
         r1.encadear(r2).encadear(r3).encadear(r4).encadear(r5);
         this.cadeia = r1;
@@ -42,44 +42,31 @@ public class AtendimentoFacade {
     }
 
     public boolean processarPedido(Pedido pedido, String codigoPromo, double distKm) {
-        System.out.println("\n══════════════════════════════════════");
-        System.out.println(pedido);
-        System.out.println("══════════════════════════════════════");
 
         ContextoPedido ctx = new ContextoPedido(pedido);
 
-        System.out.println("-- Validação --");
         if (!cadeia.validar(pedido)) {
-            System.out.println("Pedido REJEITADO.");
             ctx.cancelar();
             return false;
         }
-        System.out.println("OK");
 
         ExpressaoDesconto promo = InterpretadorPromocao.interpretar(codigoPromo);
         Dinheiro valorDesconto = promo.aplicar(pedido.subtotal(), pedido);
-        System.out.println("Promoção: " + promo.descricao() + " → " + valorDesconto);
 
-        System.out.println("-- Frete --");
         ServicoDelivery delivery = new ServicoDelivery(pedido, distKm);
         Dinheiro frete = delivery.calcular(distKm, valorDesconto);
         Dinheiro totalFinal = valorDesconto.somar(frete).multiplicar(1 + Loja.getInstance().taxaServico);
-        System.out.println("Total com taxa: " + totalFinal);
 
-        System.out.println("-- Pagamento --");
         if (!terminal.processar(pedido.getFormaPagamento(), totalFinal)) {
             ctx.cancelar();
-            System.out.println("Pagamento RECUSADO.");
             return false;
         }
 
-        System.out.println("-- Ciclo de Vida --");
         ctx.inscrever(new NotificadorCliente(canalCliente));
         ctx.inscrever(new PainelCozinha());
         ctx.confirmar();
         ctx.iniciarPreparo();
 
-        System.out.println("-- Mediador --");
         caixaSetor.confirmarPagamento(pedido);
 
         ctx.finalizar();
@@ -88,7 +75,6 @@ public class AtendimentoFacade {
         new PedidoConfirmado(canalCliente).notificar(pedido);
 
         sessao.registrar(pedido);
-        System.out.println("Sessão atual: " + sessao);
         return true;
     }
 

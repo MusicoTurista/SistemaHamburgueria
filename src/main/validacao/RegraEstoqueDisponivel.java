@@ -20,7 +20,6 @@ public class RegraEstoqueDisponivel extends RegraValidacao {
             int gramas = receita[0];
 
             if (!IngredientePool.temEstoque(ingrediente, gramas)) {
-                System.out.println("[Regra] Sem estoque de " + ingrediente + " para " + nomeItem + " (necessário: " + gramas + "g)");
                 return false;
             }
         }

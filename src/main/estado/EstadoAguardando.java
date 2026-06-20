@@ -14,17 +14,11 @@ public class EstadoAguardando implements EstadoPedido {
         c.transicionar(EstadoConfirmado.getInstance());
     }
 
-    public void iniciarPreparo(ContextoPedido c) {
-        System.out.println("Aguardando pagamento.");
-    }
+    public void iniciarPreparo(ContextoPedido c) {}
 
-    public void finalizar(ContextoPedido c) {
-        System.out.println("Aguardando pagamento.");
-    }
+    public void finalizar(ContextoPedido c) {}
 
-    public void entregar(ContextoPedido c) {
-        System.out.println("Aguardando pagamento.");
-    }
+    public void entregar(ContextoPedido c) {}
 
     public void cancelar(ContextoPedido c) {
         c.transicionar(EstadoCancelado.getInstance());

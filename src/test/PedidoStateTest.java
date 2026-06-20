@@ -54,7 +54,7 @@ public class PedidoStateTest {
     void naoDevePermitirTransicaoInvalida() {
         ContextoPedido ctx = new ContextoPedido(pedido);
         ctx.iniciarPreparo();
-        assertEquals("AGUARDANDO PAGAMENTO", ctx.estadoAtual()); // estado preservado
+        assertEquals("AGUARDANDO PAGAMENTO", ctx.estadoAtual());
     }
 
     @Test
