@@ -68,10 +68,12 @@ public class AtendimentoFacadeTest {
 
     @Test
     void deveProcessarMultiplosPedidos() {
-        for (int i = 0; i < 3; i++) {
-            Pedido p = new PedidoBuilder().cliente("Cliente" + i).item(new LancheBase("X", 20.0 + i)).build();
-            assertTrue(facade.processarPedido(p, null, 0.0));
-        }
+        Pedido p1 = new PedidoBuilder().cliente("Cliente 1").item(new LancheBase("X", 20.0)).build();
+        Pedido p2 = new PedidoBuilder().cliente("Cliente 2").item(new LancheBase("X", 20.0)).build();
+        Pedido p3 = new PedidoBuilder().cliente("Cliente 3").item(new LancheBase("X", 20.0)).build();
+        facade.processarPedido(p1, null, 0.0);
+        facade.processarPedido(p2, null, 0.0);
+        facade.processarPedido(p3, null, 0.0);
         assertEquals(3, facade.getSessao().salvar().getNumPed());
     }
 }

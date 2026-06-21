@@ -28,7 +28,6 @@ class ObserverTest {
         ctx.inscrever(obs);
 
         ctx.confirmar();
-        assertFalse(obs.getEstados().isEmpty());
         assertTrue(obs.getEstados().contains("CONFIRMADO"));
     }
 
@@ -50,8 +49,7 @@ class ObserverTest {
         NotificadorCliente nc = new NotificadorCliente(canal);
 
         nc.aoMudarEstado(pedido, "PRONTO");
-        assertFalse(canal.getMensagens().isEmpty());
-        assertTrue(canal.ultima().toLowerCase().contains("pronto") || canal.ultima().contains(pedido.getId()));
+        assertTrue(canal.ultima().contains("pronto"));
     }
 
     @Test

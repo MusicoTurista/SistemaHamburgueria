@@ -19,30 +19,41 @@ public class AdicionaisTest {
     }
 
     @Test
-    void comQueijoDeveAcumularDescricaoEPreco() {
+    void comQueijoDeveAcumularDescricao() {
         ItemLanche c = new ComQueijo(base);
         assertTrue(c.descricao().contains("Queijo"));
-        assertEquals(21.0, c.preco().reais(), 0.001); // 18 + 3
+    }
+    @Test
+    void comQueijoDeveAcumularPreco() {
+        ItemLanche c = new ComQueijo(base);
+        assertEquals(21.0, c.preco().reais(), 0.001);
     }
 
     @Test
-    void comBaconDeveAcumularDescricaoEPreco() {
+    void comBaconDeveAcumularDescricao() {
         ItemLanche c = new ComBacon(base);
         assertTrue(c.descricao().contains("Bacon"));
-        assertEquals(22.0, c.preco().reais(), 0.001); // 18 + 4
+    }
+    @Test
+    void comBaconDeveAcumularPreco() {
+        ItemLanche c = new ComBacon(base);
+        assertEquals(22.0, c.preco().reais(), 0.001);
     }
 
     @Test
-    void comOvoDeveAcumularDescricaoEPreco() {
+    void comOvoDeveAcumularDescricao() {
         ItemLanche c = new ComOvo(base);
         assertTrue(c.descricao().contains("Ovo"));
-        assertEquals(20.5, c.preco().reais(), 0.001); // 18 + 2.5
+    }
+    @Test
+    void comOvoDeveAcumularPreco() {
+        ItemLanche c = new ComOvo(base);
+        assertEquals(20.5, c.preco().reais(), 0.001);
     }
 
     @Test
     void itemLancheDeveRetornarPrecoAcumulado() {
         ItemLanche resultado = new ComOvo(new ComBacon(new ComQueijo(base)));
-        // 18 + 3 + 4 + 2.5 = 27.5
         assertEquals(27.5, resultado.preco().reais(), 0.001);
     }
 
@@ -50,8 +61,6 @@ public class AdicionaisTest {
     void descricaoDeveConterTodosAdicionais() {
         ItemLanche resultado = new ComOvo(new ComBacon(new ComQueijo(base)));
         String desc = resultado.descricao();
-        assertTrue(desc.contains("Queijo"));
-        assertTrue(desc.contains("Bacon"));
-        assertTrue(desc.contains("Ovo"));
+        assertTrue(desc.contains("Queijo") & desc.contains("Bacon") & desc.contains("Ovo"));
     }
 }

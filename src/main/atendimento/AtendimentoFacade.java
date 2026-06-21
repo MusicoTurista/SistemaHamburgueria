@@ -55,7 +55,7 @@ public class AtendimentoFacade {
 
         ServicoDelivery delivery = new ServicoDelivery(pedido, distKm);
         Dinheiro frete = delivery.calcular(distKm, valorDesconto);
-        Dinheiro totalFinal = valorDesconto.somar(frete).multiplicar(1 + Loja.getInstance().taxaServico);
+        Dinheiro totalFinal = valorDesconto.somar(frete).multiplicar(1 + Loja.getInstance().getTaxaServico());
 
         if (!terminal.processar(pedido.getFormaPagamento(), totalFinal)) {
             ctx.cancelar();

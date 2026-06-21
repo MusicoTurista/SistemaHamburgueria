@@ -2,12 +2,12 @@ package main.config;
 
 public class Loja {
     private Loja() {}
-    private static Loja instance = new Loja();
+    private static final Loja instance = new Loja();
 
-    public final String nome = "Hamburgueria";
-    public final double taxaServico = 0.10;
-    public final int limiteCardapio = 50;
-    public final double pedidoMinimo = 15;
+    private final String nome = "Hamburgueria";
+    private final double taxaServico = 0.10;
+    private final int limiteCardapio = 50;
+    private final double pedidoMinimo = 15;
 
 
     public static Loja getInstance() {
@@ -16,6 +16,22 @@ public class Loja {
 
     public boolean estaAberta() {
         return true;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getTaxaServico() {
+        return taxaServico;
+    }
+
+    public int getLimiteCardapio() {
+        return limiteCardapio;
+    }
+
+    public double getPedidoMinimo() {
+        return pedidoMinimo;
     }
 }
 

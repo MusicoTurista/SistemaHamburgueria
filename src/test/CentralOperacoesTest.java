@@ -13,6 +13,37 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CentralOperacoesTest {
     @Test
+    void mensagemPublicadaDeveSerEntregue() {
+        CentralOperacoes central = new CentralOperacoes();
+        List<String> recebidas = new ArrayList<>();
+
+        Setor s1 = new Setor() {
+            public String nome() {
+                return "S1";
+            }
+
+            public void receberMensagem(String r, String ev, Object d) {
+                recebidas.add("S1:" + ev);
+            }
+        };
+        Setor s2 = new Setor() {
+            public String nome() {
+                return "S2";
+            }
+
+            public void receberMensagem(String r, String ev, Object d) {
+                recebidas.add("S2:" + ev);
+            }
+        };
+
+        central.registrar(s1);
+        central.registrar(s2);
+        central.publicar("S1", "TESTE", null);
+
+        assertTrue(recebidas.contains("S2:TESTE"));
+    }
+
+    @Test
     void mensagemPublicadaDeveSerEntreguecomExessaoDoRemetente() {
         CentralOperacoes central = new CentralOperacoes();
         List<String> recebidas = new ArrayList<>();
@@ -41,7 +72,6 @@ public class CentralOperacoesTest {
         central.publicar("S1", "TESTE", null);
 
         assertFalse(recebidas.contains("S1:TESTE"));
-        assertTrue(recebidas.contains("S2:TESTE"));
     }
 
     @Test

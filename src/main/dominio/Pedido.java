@@ -33,7 +33,7 @@ public class Pedido {
     }
 
     public Dinheiro totalComTaxa() {
-        return subtotal().multiplicar(1 + Loja.getInstance().taxaServico);
+        return subtotal().multiplicar(1 + Loja.getInstance().getTaxaServico());
     }
 
     public String getNomeCliente() {

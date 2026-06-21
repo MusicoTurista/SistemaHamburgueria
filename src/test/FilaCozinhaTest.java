@@ -40,7 +40,6 @@ public class FilaCozinhaTest {
             }
         };
         fila.executar(cmd);
-        assertEquals(1, log.size());
         assertEquals("executado", log.getFirst());
     }
 

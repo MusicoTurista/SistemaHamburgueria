@@ -12,21 +12,42 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 public class LancheTest {
 
     @Test
-    void cloneLancheBaseDeveManterValor() {
+    void cloneLancheBaseDeveSerDiferente() {
         LancheBase original = new LancheBase("X-Burguer", 25.0);
         ItemLanche clone = original.clonar();
 
         assertNotSame(original, clone);
+    }
+
+    @Test
+    void cloneLancheBaseDeveManterDescricao() {
+        LancheBase original = new LancheBase("X-Burguer", 25.0);
+        ItemLanche clone = original.clonar();
+
         assertEquals(original.descricao(), clone.descricao());
+    }
+
+    @Test
+    void cloneLancheBaseDeveManterValor() {
+        LancheBase original = new LancheBase("X-Burguer", 25.0);
+        ItemLanche clone = original.clonar();
+
         assertEquals(original.preco().reais(), clone.preco().reais(), 0.001);
     }
 
     @Test
-    void cloneItemAvulsoDeveSErIndependente() {
+    void cloneItemAvulsoDeveSerDiferente() {
         ItemAvulso original = new ItemAvulso("Refrigerante", 6.0);
         ItemLanche clone = original.clonar();
 
         assertNotSame(original, clone);
+    }
+
+    @Test
+    void cloneItemAvulsoDeveManterDescricao() {
+        ItemAvulso original = new ItemAvulso("Refrigerante", 6.0);
+        ItemLanche clone = original.clonar();
+
         assertEquals("Refrigerante", clone.descricao());
     }
 

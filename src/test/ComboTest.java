@@ -30,8 +30,7 @@ public class ComboTest {
     void descricaoDeveIncluirNomeDoComboEItens() {
         Combo combo = new Combo("Especial", 0.0);
         combo.adicionar(new LancheBase("X-Burguer", 25.0));
-        assertTrue(combo.descricao().contains("Especial"));
-        assertTrue(combo.descricao().contains("X-Burguer"));
+        assertTrue(combo.descricao().contains("X-Burguer") & combo.descricao().contains("Especial"));
     }
 
     @Test

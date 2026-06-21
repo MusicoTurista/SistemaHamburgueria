@@ -46,10 +46,14 @@ public class PromocaoTest {
     }
 
     @Test
-    void deveAplicar10PorcentoDeDescontoApenasEmDelivery() {
+    void deveAplicar10PorcentoDeDescontoEmDelivery() {
         ExpressaoDesconto e = InterpretadorPromocao.interpretar("DELIVERY_DESCONTO_10PCT");
-        assertEquals(100.0, e.aplicar(new Dinheiro(100.0), pedidoBalcao()).reais(), 0.001);  // balcão: sem desconto
-        assertEquals(90.0, e.aplicar(new Dinheiro(100.0), pedidoDelivery()).reais(), 0.001); // delivery: com desconto
+        assertEquals(90.0, e.aplicar(new Dinheiro(100.0), pedidoDelivery()).reais(), 0.001);
+    }
+    @Test
+    void naoDeveAplicar10PorcentoDeDescontoSemDelivery() {
+        ExpressaoDesconto e = InterpretadorPromocao.interpretar("DELIVERY_DESCONTO_10PCT");
+        assertEquals(100.0, e.aplicar(new Dinheiro(100.0), pedidoBalcao()).reais(), 0.001);
     }
 
     @Test

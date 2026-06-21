@@ -22,10 +22,15 @@ public class IngredientePoolTest {
     }
 
     @Test
-    void usarDeveRetornarNomeEPeso() {
+    void usarDeveRetornarNome() {
         Ingrediente ing = IngredientePool.get("Cebola", "Horta C", 40);
         String resultado = ing.usar(50);
         assertTrue(resultado.contains("Cebola"));
+    }
+    @Test
+    void usarDeveRetornarPeso() {
+        Ingrediente ing = IngredientePool.get("Cebola", "Horta C", 40);
+        String resultado = ing.usar(50);
         assertTrue(resultado.contains("50"));
     }
 

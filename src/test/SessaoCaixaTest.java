@@ -50,13 +50,22 @@ public class SessaoCaixaTest {
     }
 
     @Test
-    void deveAcumularTotalCorretamente() {
+    void deveAcumularTotalDePedidosCorretamente() {
         SessaoCaixa sessao = new SessaoCaixa();
         sessao.registrar(pedido(100.0));
         sessao.registrar(pedido(50.0));
 
         SessaoCaixaSnapshot snap = sessao.salvar();
         assertEquals(2, snap.getNumPed());
+    }
+
+    @Test
+    void deveAcumularTotalDeDinheiroCorretamente() {
+        SessaoCaixa sessao = new SessaoCaixa();
+        sessao.registrar(pedido(100.0));
+        sessao.registrar(pedido(50.0));
+
+        SessaoCaixaSnapshot snap = sessao.salvar();
         assertTrue(snap.getTotal().reais() > 150.0);
     }
 }

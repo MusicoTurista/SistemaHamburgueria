@@ -16,13 +16,13 @@ public class LojaTest {
 
     @Test
     void lojaDevePossuirNome() {
-        assertNotNull(Loja.getInstance().nome);
-        assertFalse(Loja.getInstance().nome.isBlank());
+        assertNotNull(Loja.getInstance().getNome());
+        assertFalse(Loja.getInstance().getNome().isBlank());
     }
 
     @Test
     void taxaServicoDeveSerPositivoMenorQue1() {
-        double taxa = Loja.getInstance().taxaServico;
+        double taxa = Loja.getInstance().getTaxaServico();
         assertTrue(taxa > 0 && taxa < 1);
     }
 
@@ -33,6 +33,6 @@ public class LojaTest {
 
     @Test
     void limiteDoCardapioDeveSerPositivo() {
-        assertTrue(Loja.getInstance().limiteCardapio > 0);
+        assertTrue(Loja.getInstance().getLimiteCardapio() > 0);
     }
 }
